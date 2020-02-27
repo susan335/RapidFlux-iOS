@@ -1,0 +1,27 @@
+name: RapidFlux
+targets:
+  RapidFlux:
+    type: framework
+    platform: iOS
+    deploymentTarget: "12.0"
+    info:
+      path: RapidFlux/Info.plist
+      CFBundleIdentifier: tech.watanave.RapidFlux
+      CFBundleShortVersionString: 1
+      CFBundleVersion: 1.0.0
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: tech.watanave.RapidFlux
+    sources: RapidFlux
+    dependencies:
+      - carthage: RxSwift
+      - carthage: RxCocoa
+      - carthage: RxRelay
+  RapidFluxTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources: RapidFluxTests
+    info:
+      path: RapidFluxTests/Info.plist
+    dependencies:
+      - target: RapidFlux
