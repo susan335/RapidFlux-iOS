@@ -1,0 +1,35 @@
+import RxSwift
+import UIKit
+import RapidFlux
+
+{% for key, value in argument %}
+    {% if key|hasPrefix:"import" %}
+import {{ value }}
+    {% endif %}
+{% endfor %}
+// MARK: - BaseStore for Enums
+
+{% for class in types.based.AutoGenerateViewModel|class %}
+extension {{ class.name }} {
+    enum Action {
+    {% for nestType in class.containedTypes where nestType.localName == "State" %}
+        {% for variable in nestType.instanceVariables where variable.isMutable == true %}
+            case {{ variable.name }}({{ variable.typeName }})
+        {% endfor %}
+    {% endfor %}
+    }
+
+    func reducer(state: State, action: Action) -> State {
+        var newState = state
+        switch action {
+        {% for nestType in class.containedTypes where nestType.localName == "State" %}
+            {% for variable in nestType.instanceVariables where variable.isMutable == true %}
+                case .{{ variable.name }}(let {{ variable.name }}):
+                    newState.{{ variable.name }} = {{ variable.name }}
+            {% endfor %}
+        {% endfor %}
+        }
+        return newState
+    }
+}
+{% endfor %}
