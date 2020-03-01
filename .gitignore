@@ -171,14 +171,14 @@ iOSInjectionProject/
 
 ## Xcode Patch
 *.xcodeproj/*
-# !*.xcodeproj/project.pbxproj
-# !*.xcodeproj/xcshareddata/
-# !*.xcworkspace/contents.xcworkspacedata
+!*.xcodeproj/project.pbxproj
+!*.xcodeproj/xcshareddata/
+!*.xcworkspace/contents.xcworkspacedata
 /*.gcno
 
 ### Xcode Patch ###
 **/xcshareddata/WorkspaceSettings.xcsettings
 
 # End of https://www.gitignore.io/api/ruby,xcode,swift,fastlane,carthage
-
-Info.plist
+Sourcery/
+*.generated.swift
