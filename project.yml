@@ -25,3 +25,16 @@ targets:
       path: RapidFluxTests/Info.plist
     dependencies:
       - target: RapidFlux
+  RapidFluxExample:
+    type: application
+    platform: iOS
+    settings:
+      base:
+        CODE_SIGN_STYLE: Manual
+        PRODUCT_BUNDLE_IDENTIFIER: tech.watanave.RapidFluxExample
+    sources: RapidFluxExample
+    dependencies:
+      - target: RapidFlux
+      - carthage: RxSwift
+      - carthage: RxCocoa
+      - carthage: RxRelay
